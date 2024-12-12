@@ -28,21 +28,24 @@ class _CalculatorState extends State<Calculator> {
 
   // Button Widget
   Widget calcbutton(String btntxt, Color btncolor, Color txtcolor) {
-    return Container(
-      child: ElevatedButton(
-        onPressed: () {
-          calculation(btntxt);
-        },
-        style: ElevatedButton.styleFrom(
-          shape: CircleBorder(), // Dairesel buton şekli
-          backgroundColor: btncolor, // Buton rengi
-          padding: EdgeInsets.all(20), // İç boşluk
-        ),
-        child: Text(
-          '$btntxt',
-          style: TextStyle(
-            fontSize: 35,
-            color: txtcolor,
+    return Opacity(
+      opacity: 0.8, //
+      child: Container(
+        child: ElevatedButton(
+          onPressed: () {
+            calculation(btntxt);
+          },
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(), // Dairesel şekil
+            backgroundColor: btncolor, // Buton rengi
+            padding: EdgeInsets.all(20),
+          ),
+          child: Text(
+            '$btntxt',
+            style: TextStyle(
+              fontSize: 35,
+              color: txtcolor,
+            ),
           ),
         ),
       ),
@@ -61,7 +64,7 @@ class _CalculatorState extends State<Calculator> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/assets/images/bjk.jpg'),  // Görselin yolu
+            image: AssetImage('lib/assets/images/gs.jpg'),  // Görselin yolu
             fit: BoxFit.cover,  // Görselin nasıl ölçekleneceği
           ),
         ),
@@ -82,7 +85,7 @@ class _CalculatorState extends State<Calculator> {
                         '$displaytxt', // String tipinde displaytxt
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.yellowAccent.shade400,
                           fontSize: 100,
                         ),
                       ),
@@ -93,9 +96,9 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  calcbutton('AC', Colors.grey, Colors.black),
-                  calcbutton('+/-', Colors.grey, Colors.black),
-                  calcbutton('%', Colors.grey, Colors.black),
+                  calcbutton('AC', Colors.red.shade900, Colors.black),
+                  calcbutton('+/-', Colors.red.shade900, Colors.black),
+                  calcbutton('%', Colors.red.shade900, Colors.black),
                   calcbutton('/', Colors.amber, Colors.white),
                 ],
               ),
@@ -103,9 +106,9 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  calcbutton('7', Colors.grey, Colors.white),
-                  calcbutton('8', Colors.grey, Colors.white),
-                  calcbutton('9', Colors.grey, Colors.white),
+                  calcbutton('7', Colors.red.shade900, Colors.white),
+                  calcbutton('8', Colors.red.shade900, Colors.white),
+                  calcbutton('9', Colors.red.shade900, Colors.white),
                   calcbutton('x', Colors.amber, Colors.white),
                 ],
               ),
@@ -113,9 +116,9 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  calcbutton('4', Colors.grey, Colors.white),
-                  calcbutton('5', Colors.grey, Colors.white),
-                  calcbutton('6', Colors.grey, Colors.white),
+                  calcbutton('4', Colors.red.shade900, Colors.white ),
+                  calcbutton('5', Colors.red.shade900, Colors.white),
+                  calcbutton('6', Colors.red.shade900, Colors.white),
                   calcbutton('-', Colors.amber, Colors.white),
                 ],
               ),
@@ -123,9 +126,9 @@ class _CalculatorState extends State<Calculator> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  calcbutton('1', Colors.grey, Colors.white),
-                  calcbutton('2', Colors.grey, Colors.white),
-                  calcbutton('3', Colors.grey, Colors.white),
+                  calcbutton('1', Colors.red.shade900, Colors.white),
+                  calcbutton('2', Colors.red.shade900, Colors.white),
+                  calcbutton('3', Colors.red.shade900, Colors.white),
                   calcbutton('+', Colors.amber, Colors.white),
                 ],
               ),
@@ -137,32 +140,33 @@ class _CalculatorState extends State<Calculator> {
                     flex: 2,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
-                        shape: StadiumBorder(),
-                        backgroundColor: Colors.grey,
+                        padding: EdgeInsets.symmetric(vertical: 20), // Dikey iç boşluk artırıldı
+                        shape: StadiumBorder(), // Oval kenar tasarımı
+                        backgroundColor: Colors.red.shade900.withOpacity(0.75), // Arka plan rengi
                       ),
                       onPressed: () {
-                        calculation('0');
+                        calculation('0'); // "0" tuşunun işlevi
                       },
                       child: Text(
-                        '0',
+                        "0", // Görünen metin
                         style: TextStyle(
-                          fontSize: 35,
-                          color: Colors.white,
+                          fontSize: 30, // Yazı boyutu
+                          color: Colors.white, // Yazı rengi
                         ),
                       ),
                     ),
                   ),
                   Expanded(
                     flex: 1,
-                    child: calcbutton('.', Colors.grey, Colors.white),
+                    child: calcbutton('.', Colors.red.shade900, Colors.white), // Nokta tuşu
                   ),
                   Expanded(
                     flex: 1,
-                    child: calcbutton('=', Colors.amber, Colors.white),
+                    child: calcbutton('=', Colors.amber, Colors.white), // Eşittir tuşu
                   ),
                 ],
               ),
+
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             ],
           ),
@@ -190,7 +194,7 @@ class _CalculatorState extends State<Calculator> {
 
   String div() {
     if (numTwo == 0) {
-      return 'Error';  // Bölme hatası
+      return "0' a bolme hatası";  // Bölme hatası
     }
     result = (numOne / numTwo).toString();
     numOne = double.parse(result); // Sonucu numOne'a atıyoruz
